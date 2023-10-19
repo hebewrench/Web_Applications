@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+		<!-- dynamic web interfaces are done like so -->
+<div class=header>
+	<h1 style="color:red; text-align:center; Top:200px">Welcome to the WishList!</h1> 		<!-- remaining content goes here -->
+
+</div>																	<!-- th for Name and Description. Each item -->
+																		<!-- td which then displays item picture and description -->
+																		<!-- check brief for more... Number of items, View item, add to basket, delete from basket... more? -->
+<div class="container">
+
+	{% for Item in ItemWishList %}
+
+	<div class="row">
+		<div class="col-md-3">
+			<div class="product-top">
+				<a href="{{url_for('product')}}">
+					<img src="{{url_for('static', filename='img/' + Item.ItemImage)}}", alot="itemImg">
+				</a>
+					<div class="overlay">
+						<button type="button" class="btn btn-secondary"
+						title="Delete from WishList"> <i class="fa fa-times"></i>
+						</button>
+						<button type="button" class="btn btn-secondary"
+						title="Add to basket"> <i class="fa fa-shopping-basket"></i>
+						</button>
+						<button type="button" class="btn btn-secondary"
+						title="View Product"> <i class="fa fa-eye"></i> <!-- route to other page -->
+						</button>
+					</div>
+			</div>
+		</div>
+		<div class = "col-md-3">
+			<div class="product-side">
+				<div>
+				{{ Item.ItemName }}
+				{{ Item.Description }}	<!-- test the output of these. Possible it requires reformatting around general layout is done though -->
+				{{ Item.ItemPrice}}
+				</div>
+			</div>
+		</div>
+	</div>
+	{%endfor%}
+
+</div>
+
+{% endblock content %}
