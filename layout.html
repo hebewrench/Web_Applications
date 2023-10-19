@@ -1,0 +1,76 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta charset="utf-8">
+	    <link rel="stylesheet" href="{{url_for('static', filename ='css/bootstrap.min.css')}}">
+	<title>The Shop</title>
+		<div class="container">
+		  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+		    <a class="navbar-brand" href="{{ url_for('homepage') }}">Home</a>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		      <ul class="navbar-nav mr-auto">
+						{% if current_user.is_admin %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ url_for('admin') }}">Admin</a>
+							</li>
+						{% endif %}
+						{% if current_user.is_authenticated %}
+		        <li class="nav-item">
+		          <a class="nav-link" href="{{ url_for('checkout') }}">Checkout</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="{{ url_for('WishList') }}">WishList</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="{{ url_for('basket') }}">Basket</a>
+		        </li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+						</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+							</li>
+							{% else %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ url_for('register') }}">Register</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ url_for('login') }}">Login</a>
+							</li>
+						{% endif %}
+		        </div>
+		      <form class="form-inline my-2 my-lg-0">
+		        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		      </form>
+		    </div>
+		  </nav>
+		</div>
+{% block head %}
+{% endblock head %}
+</head>
+
+<body>
+
+			<div class="container">
+						<div id="flashes" style="background-color: #eee; padding: 5px; margin-bottom: 10px">
+								{% with messages = get_flashed_messages() %} {% if messages %}
+								<ulclass=flashes>
+									{% for message in messages %}
+									<li>{{ message }}</li>
+									{% endfor %}
+									</ul>
+									{% endif %} {% endwith %}
+							</div>
+					<div id="content">
+						{% block content %} {% endblock %}
+					</div>
+				</div>
+
+
+</body>
+</html>

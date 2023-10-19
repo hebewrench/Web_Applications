@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+        {% from "_formhelpers.html" import render_field %}
+        <form method="post" enctype="multipart/form-data">
+            <div>
+                <h3> Email Verification</h3>
+                {{ render_field(form.name ,class="form-control") }}
+                {{ render_field(form.email ,class="form-control") }}
+                <h3> Delivery details</h3>
+                {{ render_field(form.delivery ,class="form-control") }}
+                {{ render_field(form.postcode ,class="form-control") }}
+                {{ render_field(form.city ,class="form-control") }}
+                <h3> Card Payment</h3>
+                {{ render_field(form.card_name ,class="form-control") }}
+                {{ render_field(form.password ,class="form-control") }}
+                <label for="card">Expiry Month:</label>
+  <select id="cars" name="cars">
+    <option value="January">January</option>
+    <option value="Febuary">Febuary</option>
+    <option value="March">March</option>
+    <option value="April">April</option>
+    <option value="May">May</option>
+    <option value="June">June</option>
+    <option value="July">July</option>
+    <option value="August">August</option>
+    <option value="September">September</option>
+    <option value="October">October</option>
+    <option value="November">November</option>
+    <option value="December">Decmber</option>
+  </select>
+  <label for="card">Expiry Year:</label>
+  <select id="cars" name="cars">
+    <option value="2020">2020</option>
+    <option value="2021">2021</option>
+    <option value="2022">2022</option>
+    <option value="2023">2023</option>
+  </select>
+  {{ render_field(form.confirm ,class="form-control") }}
+
+            </div>
+            <p><input type=submit value="Confirm Purchase" class="btn btn-info mt-2"></p>
+        </form>
+</div>
+{% endblock content %}

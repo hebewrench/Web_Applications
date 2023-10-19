@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="sbDisplay">
+		<div class="row">
+			<div class="col-md-1 offset-md-2">&nbsp;</div>
+			<div class="col-md-3">Name</div>
+			<div class="col-md-1">Price</div>
+			<div class="col-md-1">Quantity</div>
+			<div class="col-md-1">Total Price</div>
+			<div class="col-md-1">&nbsp;</div>
+		</div>
+		{% for item in basket %}
+			<div class="row">
+
+				<div class="col-md-1 offset-md-2">
+					<a href="{{url_for('product')}}">
+						<img src="{{url_for('static', filename='img/' + item.itemImg)}}", alt="itemImg">
+					</a>
+				</div>
+
+				<div class="col-md-3">
+					<a href="url_for('product')"> {{item.itemName}} </a>
+				</div>
+
+				<div class="col-md-1"> {{item.itemPrice}} </div>
+
+				<div class="col-md-1">{{item.quantity}}</div>
+
+				<div class="col-md-1">{{item.itemTtlPrice}}</div>
+
+				<div class="col-md-1">
+					<a href="{{url_for('remove' + item.id)}}">Remove</a>
+				</div>
+			</div>
+		{% endfor %}
+		<div class="row">
+			<div class="col-md-1 offset-md-7">
+				{{ttlPrice}}
+			</div>
+		</div>
+	</div>
+{% endblock content %}
